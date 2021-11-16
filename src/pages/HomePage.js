@@ -9,6 +9,10 @@ function HomePage() {
   return (
     <main>
       <Title>Home</Title>
+
+      <section>
+        <h2>My skills</h2>
+      </section>
     </main>
   );
 }

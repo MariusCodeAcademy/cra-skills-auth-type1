@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import styled from 'styled-components';
 import { useAuthCtx } from '../store/AuthContext';
@@ -31,29 +31,47 @@ const Button = styled.button`
 
 function LoginPage() {
   const { login } = useAuthCtx();
-  const emailRef = useRef();
+  const emailRef = useRef('');
   const passRef = useRef();
+
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log(' emailRef:', emailRef.current.value);
     const email = emailRef.current.value;
     const password = passRef.current.value;
     if (!email || !password) return;
     const dataBackFromServer = await loginUser(email, password);
     if (dataBackFromServer.err) {
-      return toast.error(dataBackFromServer.err);
+      toast.error(dataBackFromServer.err);
+      setLoading(false);
+      return;
     }
     if (dataBackFromServer.msg) {
       login(dataBackFromServer.token);
     }
+    setLoading(false);
   };
+
   return (
     <main>
-      <Title>Login</Title>
+      <Title> {loading ? 'Loading ...' : 'Login'}</Title>
       <Form onSubmit={handleLogin}>
-        <Input ref={emailRef} type='text' placeholder='Enter your login' />
-        <Input ref={passRef} type='password' placeholder='Enter your pass' />
-        <Button>Login</Button>
+        <Input
+          defaultValue='a@b.com'
+          ref={emailRef}
+          type='text'
+          placeholder='Enter your login'
+        />
+        <Input
+          defaultValue='123456'
+          ref={passRef}
+          type='password'
+          placeholder='Enter your pass'
+        />
+        <Button disable={loading}>Login</Button>
       </Form>
     </main>
   );

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useHistory } from 'react-router';
 
 const AuthContext = React.createContext({
   email: '',
@@ -10,12 +11,14 @@ const AuthContext = React.createContext({
 });
 
 function AuthProvider({ children }) {
+  const history = useHistory();
   const [token, setToken] = useState('');
   const isLoggedIn = !!token;
 
   const login = (tokenArg) => {
     setToken(tokenArg);
     toast.success('Login success');
+    history.replace('/home');
   };
 
   const logout = () => {

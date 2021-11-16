@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuthCtx } from '../store/AuthContext';
 
 const Logo = styled(Link)`
   font-size: 1.5rem;
@@ -18,12 +19,26 @@ const NavLink = styled(Link)`
 `;
 
 function Navbar() {
+  const { isLoggedIn, logout } = useAuthCtx();
   return (
     <Header>
       <Logo to='/'>MySkils</Logo>
       <nav>
-        <NavLink to='/login'>Login</NavLink>
-        <NavLink to='/register'>Register</NavLink>
+        {!isLoggedIn && (
+          <>
+            <NavLink to='/login'>Login</NavLink>
+            <NavLink to='/register'>Register</NavLink>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <NavLink to='/home'>Home</NavLink>
+            <NavLink to='/add'>Add</NavLink>
+            <NavLink onClick={logout} to='/login'>
+              Logout
+            </NavLink>
+          </>
+        )}
       </nav>
     </Header>
   );
