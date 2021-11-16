@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -16,11 +17,16 @@ const Input = styled.input`
 `;
 
 function LoginPage() {
+  const emailRef = useRef();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(' emailRef:', emailRef.current.value);
+  };
   return (
     <main>
       <Title>Login</Title>
-      <Form>
-        <Input type='text' placeholder='Enter your login' />
+      <Form onSubmit={handleLogin}>
+        <Input ref={emailRef} type='text' placeholder='Enter your login' />
         <Input type='password' placeholder='Enter your pass' />
         <button>Login</button>
       </Form>
