@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   font-size: 1.5rem;
   font-weight: normal;
 `;
@@ -12,17 +13,17 @@ const Header = styled.nav`
   color: #fff;
   padding: 0.5rem 1rem;
 `;
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   padding: 0.5rem 1rem;
 `;
 
 function Navbar() {
   return (
     <Header>
-      <Logo>MySkils</Logo>
+      <Logo to='/'>MySkils</Logo>
       <nav>
-        <NavLink>Register</NavLink>
-        <NavLink>Login</NavLink>
+        <NavLink to='/login'>Login</NavLink>
+        <NavLink to='/register'>Register</NavLink>
       </nav>
     </Header>
   );

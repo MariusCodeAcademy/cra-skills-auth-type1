@@ -5,10 +5,25 @@ const Title = styled.h1`
   font-weight: normal;
 `;
 
+const Form = styled.form`
+  padding: 1rem;
+  border: 1px solid #000;
+  display: inline-block;
+`;
+const Input = styled.input`
+  font-size: 1rem;
+  padding: 1rem;
+`;
+
 function LoginPage() {
   return (
     <main>
       <Title>Login</Title>
+      <Form>
+        <Input type='text' placeholder='Enter your login' />
+        <Input type='password' placeholder='Enter your pass' />
+        <button>Login</button>
+      </Form>
     </main>
   );
 }
