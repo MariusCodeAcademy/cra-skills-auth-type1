@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+## Darysime tik React projektą - back-endą jums pateikiu.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Apie React: Pradedame nuo create-react-app, įsidiegiame styled-components (CSS frameworkų naudoti negalime), react-router-dom (naudosim lazy loading) ir kitus reikalingus modulius. Būtina naudoti DotEnv. Dizainas svarbu, stenkitės palaikyti bendrą tvarką.
 
-## Available Scripts
+### BASE_URL = https://react-test-sejo6.ondigitalocean.app/
 
-In the project directory, you can run:
+##Kokius puslapius sukurt?
 
-### `npm start`
+## Register
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Šis puslapis turės meniu juostą (logotipas, login ir register nuorodos), formą su el. paštu ir slaptažodžiu – įvedus kreipiasi į serverį (https://react-test-sejo6.ondigitalocean.app/v1/auth/register). Sėkminga ar nesėkminga registracija išmeta notificationą (įskaičiuoti visus įmanomus error handlingus). Serveris grąžina tik du: 200 arba 400.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Login
 
-### `npm test`
+Šis puslapis turės meniu juostą (logotipas, login ir register nuorodos), formą su el. paštu ir slaptažodžiu – įvedus kreipiasi į serverį (https://react-test-sejo6.ondigitalocean.app/v1/auth/login). Jei sėkmingai – nukreipia į Home, jei ne – išmetą notification klaidą (įskaičiuoti visus įmanomus error handlingus). Serveris grąžina tik du: 200 arba 400.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Home (patekti galima tik prisijungus – router blocking)
 
-### `npm run build`
+Šis puslapis turės meniu juostą (logotipas, home ir add nuorodos <- skirtingai nei login/register puslapiuose) bei kortelėse (t.y. stačiakampiuose, dizainas nesvarbu) atvaizduos įrašus (atsisiųstus iš https://react-test-sejo6.ondigitalocean.app/v1/content/skills). Kol jie neužsikrovė – išmeta errorą. Jei nėra nei vieno įrašo – išmeta, kad nėra įrašų.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Add (patekti galima tik prisijungus – router blocking)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Šis puslapis turės meniu juostą (logotipas, home ir add nuorodos) bei formą (t.y. title – input text ir description - textarea), kuriuos užpildžius – išsiųs į serverį (https://react-test-sejo6.ondigitalocean.app/v1/content/skills). Bet kokį atsaką, sėkmingą ar ne, atvaizduojame su notificationu.
