@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import toast from 'react-hot-toast';
 import styled from 'styled-components';
+import { useAuthCtx } from '../store/AuthContext';
 import { loginUser } from '../utils/fetch';
 
 const Title = styled.h1`
@@ -29,6 +30,7 @@ const Button = styled.button`
 `;
 
 function LoginPage() {
+  const { login } = useAuthCtx();
   const emailRef = useRef();
   const passRef = useRef();
   const handleLogin = async (e) => {
@@ -39,12 +41,11 @@ function LoginPage() {
     if (!email || !password) return;
     const dataBackFromServer = await loginUser(email, password);
     if (dataBackFromServer.err) {
-      toast.error(dataBackFromServer.err);
+      return toast.error(dataBackFromServer.err);
     }
-    console.log(
-      'file: LoginPage.js variable: dataBackFromServer:',
-      dataBackFromServer
-    );
+    if (dataBackFromServer.msg) {
+      login(dataBackFromServer.token);
+    }
   };
   return (
     <main>
