@@ -1,9 +1,9 @@
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { useAuthCtx } from '../store/AuthContext';
 import { loginUser } from '../utils/fetch';
+import { useQuery } from '../utils/hooks';
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -31,11 +31,7 @@ export const Button = styled.button`
 `;
 
 function LoginPage() {
-  const { search } = useLocation();
-  const urlSearchParams = new URLSearchParams(search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-  console.log('LoginPage.js: match ===', params);
-  const { registeredUser } = params;
+  const registeredUser = useQuery('registeredUser');
 
   const { login } = useAuthCtx();
   const emailRef = useRef('');
