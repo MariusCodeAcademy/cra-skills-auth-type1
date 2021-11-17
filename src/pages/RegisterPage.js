@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import RegisterForm from '../components/RegisterForm';
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -9,6 +10,7 @@ function RegisterPage() {
   return (
     <main>
       <Title>Register</Title>
+      <RegisterForm />
     </main>
   );
 }

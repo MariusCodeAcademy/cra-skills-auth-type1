@@ -35,6 +35,23 @@ export async function addSkill({ title, description }) {
   return data;
 }
 
+export async function registerUser(email, password) {
+  const resp = await fetch(`${backUrl}/v1/auth/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+
+  const data = await resp.json();
+  // console.log(data);
+  return data;
+}
+
 export function getToken() {
   const token = localStorage.getItem('skillUserToken');
   return token || null;
