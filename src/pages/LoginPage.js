@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import toast from 'react-hot-toast';
+import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import { useAuthCtx } from '../store/AuthContext';
 import { loginUser } from '../utils/fetch';
@@ -30,6 +31,12 @@ export const Button = styled.button`
 `;
 
 function LoginPage() {
+  const { search } = useLocation();
+  const urlSearchParams = new URLSearchParams(search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  console.log('LoginPage.js: match ===', params);
+  const { registeredUser } = params;
+
   const { login } = useAuthCtx();
   const emailRef = useRef('');
   const passRef = useRef();
@@ -60,7 +67,7 @@ function LoginPage() {
       <Title> {loading ? 'Loading ...' : 'Login'}</Title>
       <Form onSubmit={handleLogin}>
         <Input
-          defaultValue='a@b.com'
+          defaultValue={registeredUser ? registeredUser : 'a@b.com'}
           ref={emailRef}
           type='text'
           placeholder='Enter your login'

@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Form, Input, Button } from '../pages/LoginPage';
 import { registerUser } from '../utils/fetch';
 import { toast } from 'react-hot-toast';
+import { useHistory } from 'react-router';
 
 function doPassMatch(p1, p2) {
   return p1 === p2;
 }
 function RegisterForm() {
+  const history = useHistory();
   const [formInputs, setFormInputs] = useState({
     email: '',
     pass: '',
@@ -28,11 +30,14 @@ function RegisterForm() {
       console.log('no match');
       return;
     }
-    const dataBack = await registerUser(email, pass);
+    // const dataBack = await registerUser(email, pass);
+    const dataBack = { affectedRows: 1 };
     console.log('RegisterForm.js: dataBack ===', dataBack);
     if (dataBack.affectedRows === 1) {
       toast.success(`Success ${email} registered`);
       // redirect to login
+      // query params
+      history.replace(`/login?registeredUser=${email}`);
       // fill login with email
     }
   };
