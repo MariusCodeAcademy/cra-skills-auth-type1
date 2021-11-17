@@ -9,19 +9,19 @@ const Title = styled.h1`
   font-weight: normal;
 `;
 
-const Form = styled.form`
+export const Form = styled.form`
   padding: 1rem;
   border: 1px solid #000;
   border-radius: 5px;
   display: inline-block;
 `;
-const Input = styled.input`
+export const Input = styled.input`
   font-size: 1rem;
   padding: 0.3rem 1rem;
   display: block;
   margin-bottom: 1rem;
 `;
-const Button = styled.button`
+export const Button = styled.button`
   border: none;
   padding: 0.5rem 1rem;
   background-color: #333;

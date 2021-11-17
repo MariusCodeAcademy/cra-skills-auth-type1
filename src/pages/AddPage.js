@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import AddForm from '../components/AddForm';
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -9,6 +10,7 @@ function AddPage() {
   return (
     <main>
       <Title>Add</Title>
+      <AddForm />
     </main>
   );
 }
