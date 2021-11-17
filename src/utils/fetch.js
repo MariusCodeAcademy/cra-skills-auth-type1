@@ -17,3 +17,25 @@ export async function loginUser(email, password) {
   // console.log(data);
   return data;
 }
+export async function addSkill({ title, description }) {
+  const resp = await fetch(`${backUrl}/v1/content/skills`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({
+      title,
+      description,
+    }),
+  });
+
+  const data = await resp.json();
+  // console.log(data);
+  return data;
+}
+
+export function getToken() {
+  const token = localStorage.getItem('token');
+  return token || null;
+}
