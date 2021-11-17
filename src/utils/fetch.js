@@ -36,6 +36,6 @@ export async function addSkill({ title, description }) {
 }
 
 export function getToken() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('skillUserToken');
   return token || null;
 }

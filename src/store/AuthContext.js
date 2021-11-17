@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useHistory } from 'react-router';
+import { getToken } from '../utils/fetch';
 
 const AuthContext = React.createContext({
   email: '',
@@ -12,16 +13,18 @@ const AuthContext = React.createContext({
 
 function AuthProvider({ children }) {
   const history = useHistory();
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(getToken());
   const isLoggedIn = !!token;
 
   const login = (tokenArg) => {
+    localStorage.setItem('skillUserToken', tokenArg);
     setToken(tokenArg);
     toast.success('Login success');
     history.replace('/home');
   };
 
   const logout = () => {
+    localStorage.removeItem('skillUserToken');
     setToken(null);
   };
 
